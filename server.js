@@ -9,13 +9,13 @@ app.use(express.urlencoded({extended: true }))
 app.use(express.json())
 
 app.use(require('./routes'))
-app.get('*' (req, res) =>{
-  res.sendFile(join(_dirname, 'client', 'build', index.html'))
+app.get('*', (req, res) => {
+  res.sendFile(join(__dirname, 'client', 'build', 'index.html'))
 })
 
-require('mongoose').connect(process.env.MONGODB_URI || process.env.LOCAL_URI, {
+require('mongoose').connect('mongodb://localhost/tododb', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => app.listen(process.env.PORT || 3000))
+  .then(() => app.listen(process.env.PORT || 3001))
   .catch(err => console.error(err))
